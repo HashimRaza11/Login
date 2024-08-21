@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Example credentials for demonstration
+            const credentials = [
+                { email: 'admin@gmail.com', password: '123456', role: 'Admin' },
+                { email: 'jason@email.com', password: '123456', role: 'Manager' },
+                { email: 'justin@email.com', password: '123456', role: 'Sales Counter' }
+            ];
+
+            const user = credentials.find(
+                user => user.email === email && user.password === password
+            );
+
+            if (user) {
+                alert(`Login successful! Welcome ${user.role}.`);
+
+                // Redirect to different pages based on user role
+                if (user.role === 'Admin') {
+                    window.location.href = 'admin.html';
+                } else if (user.role === 'Manager') {
+                    window.location.href = 'manager.html';
+                } else if (user.role === 'Sales Counter') {
+                    window.location.href = 'sales_counter.html';
+                }
+            } else {
+                alert('Invalid email or password.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <img src="lock-icon.jpeg" alt="Lock Icon" class="lock-icon">
+                <h2>Login</h2>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email" required>
+                <small>Your unique email</small>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <small>Your strong password <a href="#">Forgot Password?</a></small>
+
+                <button type="submit">Login</button>
+            </form>
+            <div class="user-credentials">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>admin@gmail.com</td>
+                            <td>123456</td>
+                            <td>Admin</td>
+                        </tr>
+                        <tr>
+                            <td>jason@email.com</td>
+                            <td>123456</td>
+                            <td>Manager</td>
+                        </tr>
+                        <tr>
+                            <td>justin@email.com</td>
+                            <td>123456</td>
+                            <td>Sales Counter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
